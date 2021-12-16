@@ -9,11 +9,14 @@ from selenium.webdriver.common.keys import Keys
 
 class BaseClass:
 
-    def __init__(self, browser) -> object:
+    def __init__(self, browser):
         self.browser = browser
         self.logger = logging.getLogger(type(self).__name__)
         self.screenshot_name = f'./screenshots/{time.strftime("%Y-%m-%d-%H:%M:%S")}-screenshot.png'
 
+    # Alerts
+    SUCCESS_ALLERT = (By.CSS_SELECTOR, ".alert.alert-success.alert-dismissible")
+    WARNING_ALERT = (By.CSS_SELECTOR, ".alert.alert-danger.alert-dismissible")
     # Main page locators:
     SEARCH_LINE = (By.CSS_SELECTOR, "[name=search]")
     SEARCH_BUTTON = (By.CSS_SELECTOR, ".input-group-btn button")
@@ -39,7 +42,6 @@ class BaseClass:
     LINK_WINDOWS = (By.PARTIAL_LINK_TEXT, "Windows")
     ADD_TO_CART = (By.CSS_SELECTOR, ".button-group .fa.fa-shopping-cart")
     CART_TOTAL = (By.CSS_SELECTOR, "#cart-total")
-    ALERT_SUCCESS = (By.CSS_SELECTOR, ".alert.alert-success.alert-dismissible")
     COMPARE_PRODUCT = (By.XPATH, "//*[@class='button-group']/button[@data-original-title='Compare this Product']")
     PRODUCT_COMPARE_LINK = (By.CSS_SELECTOR, "#compare-total")
     # Product page locators:
@@ -47,12 +49,16 @@ class BaseClass:
     THUMBNAILS = (By.CSS_SELECTOR, ".image-additional .thumbnail")
     TAB_CONTENT = (By.CSS_SELECTOR, ".tab-content")
     PRICE = (By.XPATH, "//*[@class='list-unstyled']/li/h2")
-    # User login page locators:
+
+    # Account Login page locators (/index.php?route=account/login):
     LOGIN_PAGE = "index.php?route=account/login"
     CONTINUE_BUTTON = (By.CSS_SELECTOR, ".well .btn.btn-primary")
+    EMAIL_ADDRESS = (By.CSS_SELECTOR, "#input-email")
+    INPUT_PASSWORD = (By.CSS_SELECTOR, "#input-password")
     LOGIN_BUTTON = (By.CSS_SELECTOR, "[value=Login]")
-    WARNING_ALERT = (By.CSS_SELECTOR, ".alert.alert-danger.alert-dismissible")
-    INPUT_PASSWORD = (By.NAME, "password")
+
+    # Register Account page locators (/index.php?route=account/register):
+    REGISTER_ACCOUNT_PAGE = "index.php?route=account/register"
     FIRST_NAME_FIELD = (By.CSS_SELECTOR, "#input-firstname")
     LAST_NAME_FIELD = (By.CSS_SELECTOR, "#input-lastname")
     EMAIL_FIELD = (By.CSS_SELECTOR, "#input-email")
@@ -62,6 +68,7 @@ class BaseClass:
     PRIVACY_POLICY_CHECKBOX = (By.NAME, "agree")
     SUBMIT_CONTINUE_BUTTON = (By.CSS_SELECTOR, ".pull-right .btn.btn-primary")
     SUCCESS_NOTIFICATION = (By.CSS_SELECTOR, "#content h1")
+
     # Admin's login page
     ADM_LOGIN_PAGE_LOCATION = '/admin/'
     ADM_LOGIN_BUTTON = (By.CSS_SELECTOR, ".text-right button")
@@ -110,6 +117,17 @@ class BaseClass:
             return el
 
     def wait_web_element(self, locator, timeout=2):
+        """
+        Принимает в качестве аргументов:
+            • локатор веб-элемента,
+            • время ожидания в секундах (timeout).
+            По умолчанию timeout = 2 с.
+        Ожидает появления веб-элемента по указанному локатору на странице в течение timeout секунд.
+        Метод возвращает:
+            веб-элемент, в случае его появления на веб-странице;
+            AssertionError, если веб-элемент не был обнаружен на веб-странице за время ожидания.
+
+        """
         self.logger.info('Waiting for the element {} within {} seconds'.format(locator, timeout))
         try:
             el = WebDriverWait(self.browser, timeout).until(EC.visibility_of_element_located(locator))
@@ -120,6 +138,13 @@ class BaseClass:
         return el
 
     def find_all_specified_elements(self, locator):
+        """
+        Метод принимает в качестве аргумента локатор веб-элемента(ов).
+        Метод производит поиск веб-элементов на странице по указанному локатору.
+        Метод возвращает:
+            список веб-элементов, в случае обнаружения хотя бы доного из них на веб-странице;
+            пустой список, если ни одного веб-элемента не было обнаружен на веб-странице.
+        """
         self.logger.info('Searching for several elements with locator: \'{} = {}\''.format(*locator))
         return self.browser.find_elements(*locator)
 

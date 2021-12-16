@@ -1,4 +1,4 @@
-from BaseClass import BaseClass
+import BaseClass
 
 
 class MainPage(BaseClass):

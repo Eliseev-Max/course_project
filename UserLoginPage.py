@@ -13,7 +13,12 @@ class UserLoginPage(BaseClass):
         self.browser.get(url + self.LOGIN_PAGE)
         return self
 
-    def go_to_account_reg_page(self, url):
+    def open_reg_account_page(self, url):
+        self.logger.info("Opening source: {}".format(url + self.REGISTER_ACCOUNT_PAGE))
+        self.browser.get(url + self.REGISTER_ACCOUNT_PAGE)
+        return self
+
+    def go_to_reg_account_page(self, url):
         self.go_to_login_page(url)
         self.logger.info("Clicking on the CONTINUE button")
         WebDriverWait(self.browser, 2).until(EC.visibility_of_element_located(self.CONTINUE_BUTTON)).click()

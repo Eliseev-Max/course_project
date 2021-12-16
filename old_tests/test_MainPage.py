@@ -2,7 +2,7 @@
 
 import time
 import allure
-from .page_objects.MainPage import MainPage
+from page_objects.MainPage import MainPage
 
 CURRENCY = dict({"USD": "$", "EUR": "€", "GBP": "£"})
 CURRENCY_LIST = list(CURRENCY.keys())
@@ -28,7 +28,7 @@ def test_number_of_product_thumbs(browser, base_url):
     main_page = MainPage(browser)
     main_page.go_to_mainpage(base_url)
 
-    if len(main_page.find_all_specified_elements(MainPage.PRODUCT_THUMBS)) != 4:
+    if len(main_page.find_all_specified_elements(MP.PRODUCT_THUMBS)) != 4:
         browser.save_screenshot(main_page.screenshot_name)
         main_page.logger.error("Number of product thumbs is not 4")
         raise AssertionError

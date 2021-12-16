@@ -1,0 +1,1 @@
+[32mINFO    [0m BrowserLogger:conftest.py:54 	Test "test_create_new_user" is running

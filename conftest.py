@@ -3,6 +3,7 @@ import os
 import os.path as op
 import pytest
 from selenium import webdriver
+from BaseClass import BaseClass
 
 DRIVERS = os.path.expanduser("~/webdrivers")
 LOGFILE_NAME = os.getcwd() + op.normpath("/logs/selenium.log")
@@ -39,7 +40,7 @@ def pytest_addoption(parser):
 def browser(request):
     browser = request.config.getoption("--browser")
     executor = request.config.getoption("--executor")  # где находится Selenium Server
-    # selenoid = request.config.getoption("--selenoid")
+    selenoid = request.config.getoption("--selenoid")
     headless = request.config.getoption("--headless")
     maximized = request.config.getoption("--maximized")
     version = request.config.getoption("--bversion")
@@ -77,36 +78,39 @@ def browser(request):
     }
 
     executor_url = f"http://{executor}:4444/wd/hub"
-    driver = webdriver.Remote(command_executor=executor_url,
-                              desired_capabilities=caps)
 
-    if browser == "chrome" and mobile:  # Эмуляция работы браузера на мобильном устройстве
-        caps["goog:chromeOptions"]["mobileEmulation"] = {"deviceName": "iPhone 5/SE"}
+    if selenoid:
 
-    if not mobile:
-        driver.maximize_window()
+        driver = webdriver.Remote(command_executor=executor_url,
+                                  desired_capabilities=caps)
 
-    # else:
-    #     if browser == "chrome":
-    #         options = webdriver.ChromeOptions()
-    #         options.headless = headless
-    #         driver = webdriver.Chrome(
-    #             executable_path=f"{DRIVERS}/chromedriver",
-    #             options=options
-    #         )
-    #     elif browser == "firefox":
-    #         options = webdriver.FirefoxOptions()
-    #         options.headless = headless
-    #         driver = webdriver.Firefox(executable_path=f"{DRIVERS}/geckodriver",
-    #                                    options=options
-    #                                    )
-    #     elif browser == "opera":
-    #         driver = webdriver.Opera(executable_path=f"{DRIVERS}/operadriver")
-    #     else:
-    #         raise ValueError(f"Driver not supported: {browser}")
-    #
-    #     if maximized:
-    #         driver.maximize_window()
+        if browser == "chrome" and mobile:  # Эмуляция работы браузера на мобильном устройстве
+            caps["goog:chromeOptions"]["mobileEmulation"] = {"deviceName": "iPhone 5/SE"}
+
+        if not mobile:
+            driver.maximize_window()
+
+    else:
+        if browser == "chrome":
+            options = webdriver.ChromeOptions()
+            options.headless = headless
+            driver = webdriver.Chrome(
+                executable_path=f"{DRIVERS}/chromedriver",
+                options=options
+            )
+        elif browser == "firefox":
+            options = webdriver.FirefoxOptions()
+            options.headless = headless
+            driver = webdriver.Firefox(executable_path=f"{DRIVERS}/geckodriver",
+                                       options=options
+                                       )
+        elif browser == "opera":
+            driver = webdriver.Opera(executable_path=f"{DRIVERS}/operadriver")
+        else:
+            raise ValueError(f"Driver not supported: {browser}")
+
+        if maximized:
+            driver.maximize_window()
 
     logger.info("Browser {} started with such capabilities: {}".format(browser, driver.desired_capabilities))
 
