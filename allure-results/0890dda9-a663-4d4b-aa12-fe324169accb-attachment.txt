@@ -1,0 +1,16 @@
+[32mINFO    [0m BrowserLogger:conftest.py:55 	Test "test_create_new_user" is running
+[32mINFO    [0m BrowserLogger:conftest.py:116 Browser chrome started with such capabilities: {'acceptInsecureCerts': False, 'browserName': 'chrome', 'browserVersion': '96.0.4664.110', 'chrome': {'chromedriverVersion': '96.0.4664.45 (76e4c1bb2ab4671b8beba3444e61c0f17584b2fc-refs/branch-heads/4664@{#947})', 'userDataDir': 'C:\\Users\\MAF23~1.ELI\\AppData\\Local\\Temp\\scoped_dir16940_455239396'}, 'goog:chromeOptions': {'debuggerAddress': 'localhost:52745'}, 'networkConnectionEnabled': False, 'pageLoadStrategy': 'normal', 'platformName': 'windows', 'proxy': {}, 'setWindowRect': True, 'strictFileInteractability': False, 'timeouts': {'implicit': 0, 'pageLoad': 300000, 'script': 30000}, 'unhandledPromptBehavior': 'dismiss and notify', 'webauthn:extension:credBlob': True, 'webauthn:extension:largeBlob': True, 'webauthn:virtualAuthenticators': True}
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:17 Opening source: http://172.19.16.142/index.php?route=account/register
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:30 Filling in field "#input-firstname" with string: Srdzwpqtl
+[32mINFO    [0m UserLoginPage:BaseClass.py:135 Searching element: 'css selector = #input-firstname'
+[32mINFO    [0m UserLoginPage:BaseClass.py:143 Element 'css selector = #input-firstname' was found
+[32mINFO    [0m UserLoginPage:BaseClass.py:184 Filling the field with text: Srdzwpqtl
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:30 Filling in field "#input-lastname" with string: Rglajy
+[32mINFO    [0m UserLoginPage:BaseClass.py:135 Searching element: 'css selector = #input-lastname'
+[32mINFO    [0m UserLoginPage:BaseClass.py:143 Element 'css selector = #input-lastname' was found
+[32mINFO    [0m UserLoginPage:BaseClass.py:184 Filling the field with text: Rglajy
+[32mINFO    [0m UserLoginPage:BaseClass.py:135 Searching element: 'css selector = #input-email'
+[32mINFO    [0m UserLoginPage:BaseClass.py:143 Element 'css selector = #input-email' was found
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:37 Entering email: lmhb74Vy0@test.ru
+[32mINFO    [0m UserLoginPage:BaseClass.py:184 Filling the field with text: lmhb74Vy0@test.ru
+[32mINFO    [0m BrowserLogger:conftest.py:120 	Test "test_create_new_user" completed

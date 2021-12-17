@@ -1,4 +1,5 @@
 import logging
+import random
 import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -14,6 +15,9 @@ class BaseClass:
         self.logger = logging.getLogger(type(self).__name__)
         self.screenshot_name = f'./screenshots/{time.strftime("%Y-%m-%d-%H:%M:%S")}-screenshot.png'
 
+    ABC = "abcdefghijklmnopqrstuvwxyz"
+    NUMBERS = "0123456789"
+    SYMBOLS = "!?@#$%&*<>+-"
     # Alerts
     SUCCESS_ALLERT = (By.CSS_SELECTOR, ".alert.alert-success.alert-dismissible")
     WARNING_ALERT = (By.CSS_SELECTOR, ".alert.alert-danger.alert-dismissible")
@@ -94,6 +98,29 @@ class BaseClass:
     # Checkboxes
     CHECKBOX = (By.NAME, "selected[]")
 
+    def generate_string(self, num_of_letters=None, uppercase=False, num=False, sym=False, disable_lowercase=False):
+        characters = self.ABC
+        capital_letters = self.ABC.upper()
+
+        if disable_lowercase:
+            characters = ""
+
+        if uppercase:
+            characters = characters + capital_letters
+
+        if num:
+            characters = characters + self.NUMBERS
+
+        if sym:
+            characters = characters + self.SYMBOLS
+
+        if num_of_letters is not None or num_of_letters.isdigit():
+            num_of_letters = int(num_of_letters)
+        else:
+            num_of_letters = random.randint(4, 10)
+
+        return "".join(random.sample(characters, num_of_letters))
+
     def find_web_element(self, locator):
         """
         Метод принимает в качестве аргумента локатор веб-элемента.
@@ -116,6 +143,17 @@ class BaseClass:
             self.logger.info('Element \'{} = {}\' was found'.format(*locator))
             return el
 
+    def find_all_specified_elements(self, locator):
+        """
+        Метод принимает в качестве аргумента локатор веб-элемента(ов).
+        Метод производит поиск веб-элементов на странице по указанному локатору.
+        Метод возвращает:
+            список веб-элементов, в случае обнаружения хотя бы доного из них на веб-странице;
+            пустой список, если ни одного веб-элемента не было обнаружен на веб-странице.
+        """
+        self.logger.info('Searching for several elements with locator: \'{} = {}\''.format(*locator))
+        return self.browser.find_elements(*locator)
+
     def wait_web_element(self, locator, timeout=2):
         """
         Принимает в качестве аргументов:
@@ -137,16 +175,14 @@ class BaseClass:
             raise AssertionError(time_is_up, "Время ожидания элемента \'{} = {}\' истекло".format(*locator))
         return el
 
-    def find_all_specified_elements(self, locator):
-        """
-        Метод принимает в качестве аргумента локатор веб-элемента(ов).
-        Метод производит поиск веб-элементов на странице по указанному локатору.
-        Метод возвращает:
-            список веб-элементов, в случае обнаружения хотя бы доного из них на веб-странице;
-            пустой список, если ни одного веб-элемента не было обнаружен на веб-странице.
-        """
-        self.logger.info('Searching for several elements with locator: \'{} = {}\''.format(*locator))
-        return self.browser.find_elements(*locator)
+    def check_element_appears_after_click(self, clickable_elem, expected_elem):
+        self.find_web_element(clickable_elem).click()
+        self.wait_web_element(expected_elem)
+
+    def fill_specified_field(self, web_element_field, text):
+        web_element_field.clear()
+        self.logger.info("Filling the field with text: {}".format(text))
+        web_element_field.send_keys(text)
 
 
 class LoginOnAdminPage(BaseClass):

@@ -1,0 +1,20 @@
+[32mINFO    [0m BrowserLogger:conftest.py:55 	Test "test_create_new_user" is running
+[32mINFO    [0m BrowserLogger:conftest.py:116 Browser chrome started with such capabilities: {'acceptInsecureCerts': False, 'browserName': 'chrome', 'browserVersion': '96.0.4664.110', 'chrome': {'chromedriverVersion': '96.0.4664.45 (76e4c1bb2ab4671b8beba3444e61c0f17584b2fc-refs/branch-heads/4664@{#947})', 'userDataDir': 'C:\\Users\\MAF23~1.ELI\\AppData\\Local\\Temp\\scoped_dir17380_48636851'}, 'goog:chromeOptions': {'debuggerAddress': 'localhost:60009'}, 'networkConnectionEnabled': False, 'pageLoadStrategy': 'normal', 'platformName': 'windows', 'proxy': {}, 'setWindowRect': True, 'strictFileInteractability': False, 'timeouts': {'implicit': 0, 'pageLoad': 300000, 'script': 30000}, 'unhandledPromptBehavior': 'dismiss and notify', 'webauthn:extension:credBlob': True, 'webauthn:extension:largeBlob': True, 'webauthn:virtualAuthenticators': True}
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:17 Opening source: http://172.19.16.142/index.php?route=account/register
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:46 Filling fields "First Name" and "Last Name"
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:42 Filling the field with text: Koxqur
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:42 Filling the field with text: Ctnrgqb
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:46 Filling fields "First Name" and "Last Name"
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:42 Filling the field with text: Ypvsuecad
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:42 Filling the field with text: Ayqphlvzwt
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:53 Entering email
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:42 Filling the field with text: e8ivE@test.com
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:58 Entering phone number
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:42 Filling the field with text: +71234567890
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:64 Entering and confirming password
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:42 Filling the field with text: nAPhy
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:42 Filling the field with text: nAPhy
+[32mINFO    [0m UserLoginPage:BaseClass.py:108 Searching element: 'name = agree'
+[32mINFO    [0m UserLoginPage:BaseClass.py:116 Element 'name = agree' was found
+[32mINFO    [0m UserLoginPage:UserLoginPage.py:79 Clicking on the element 'css selector = .pull-right .btn.btn-primary'
+[32mINFO    [0m BrowserLogger:conftest.py:120 	Test "test_create_new_user" completed

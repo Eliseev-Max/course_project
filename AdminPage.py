@@ -52,13 +52,13 @@ class AdminPage(BaseClass):
         self.logger.info("Saving new product")
         self.browser.find_element(*self.SAVE_BUTTON).click()
 
-    @staticmethod
-    def random_string_generator():
-        lower_case = "abcdefghijklmnopqrstuvwxyz"
-        upper_case = lower_case.upper()
-        numbers = "0123456789"
-        symbols = lower_case + upper_case + numbers
-        return "".join(random.sample(symbols, random.randint(5, 9)))
+    # @staticmethod
+    # def random_string_generator():
+    #     lower_case = "abcdefghijklmnopqrstuvwxyz"
+    #     upper_case = lower_case.upper()
+    #     numbers = "0123456789"
+    #     symbols = lower_case + upper_case + numbers
+    #     return "".join(random.sample(symbols, random.randint(5, 9)))
 
     def add_new_product(self):
         self.logger.info("Adding new product")
