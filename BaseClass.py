@@ -19,7 +19,7 @@ class BaseClass:
     NUMBERS = "0123456789"
     SYMBOLS = "!?@#$%&*<>+-"
     # Alerts
-    SUCCESS_ALLERT = (By.CSS_SELECTOR, ".alert.alert-success.alert-dismissible")
+    SUCCESS_ALERT = (By.CSS_SELECTOR, ".alert.alert-success.alert-dismissible")
     WARNING_ALERT = (By.CSS_SELECTOR, ".alert.alert-danger.alert-dismissible")
     # Main page locators:
     SEARCH_LINE = (By.CSS_SELECTOR, "[name=search]")
@@ -71,6 +71,7 @@ class BaseClass:
     PASSWORD_CONFIRM_FIELD = (By.CSS_SELECTOR, "#input-confirm")
     PRIVACY_POLICY_CHECKBOX = (By.NAME, "agree")
     SUBMIT_CONTINUE_BUTTON = (By.CSS_SELECTOR, ".pull-right .btn.btn-primary")
+    BLANK_FIELDS_TEXT = (By.CSS_SELECTOR, ".text-danger")
     SUCCESS_NOTIFICATION = (By.CSS_SELECTOR, "#content h1")
 
     # Admin's login page
@@ -98,9 +99,10 @@ class BaseClass:
     # Checkboxes
     CHECKBOX = (By.NAME, "selected[]")
 
-    def generate_string(self, num_of_letters=None, uppercase=False, num=False, sym=False, disable_lowercase=False):
-        characters = self.ABC
-        capital_letters = self.ABC.upper()
+    @staticmethod
+    def generate_string(num_of_chars=None, uppercase=False, num=False, sym=False, disable_lowercase=False):
+        characters = BaseClass.ABC
+        capital_letters = BaseClass.ABC.upper()
 
         if disable_lowercase:
             characters = ""
@@ -109,17 +111,17 @@ class BaseClass:
             characters = characters + capital_letters
 
         if num:
-            characters = characters + self.NUMBERS
+            characters = characters + BaseClass.NUMBERS
 
         if sym:
-            characters = characters + self.SYMBOLS
+            characters = characters + BaseClass.SYMBOLS
 
-        if num_of_letters is not None or num_of_letters.isdigit():
-            num_of_letters = int(num_of_letters)
+        if num_of_chars is None:
+            num_of_chars = random.randint(4, 10)
         else:
-            num_of_letters = random.randint(4, 10)
+            num_of_chars = int(num_of_chars)
 
-        return "".join(random.sample(characters, num_of_letters))
+        return "".join(random.sample(characters, num_of_chars))
 
     def find_web_element(self, locator):
         """

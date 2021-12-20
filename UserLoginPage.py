@@ -24,6 +24,11 @@ class UserLoginPage(BaseClass):
         WebDriverWait(self.browser, 2).until(EC.visibility_of_element_located(self.CONTINUE_BUTTON)).click()
         return self
 
+    def compose_phone_number(self, short=3, long=11):
+        shortest = 10**int(short)
+        longest = 10**int(long)
+        return str(random.randint(shortest, longest))
+
     def fill_in_with_letters(self, locator, name=None):
         if name is None:
             name = self.generate_string().capitalize()
@@ -37,9 +42,9 @@ class UserLoginPage(BaseClass):
         self.logger.info(f"Entering email: {email}")
         self.fill_specified_field(email_field, email)
 
-    def enter_telephone(self, phone_number=None):
+    def enter_telephone(self, phone_number=None, min=3, max=11):
         if phone_number is None:
-            phone_number = self.generate_string(num_of_letters=11, num=True, disable_lowercase=True)
+            phone_number = self.compose_phone_number(short=min, long=max)
         self.logger.info(f"Entering phone number: {phone_number}")
         self.fill_specified_field(self.find_web_element(self.TELEPHONE_FIELD), phone_number)
 
