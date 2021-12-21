@@ -33,7 +33,7 @@ class UserLoginPage(BaseClass):
         if name is None:
             name = self.generate_string().capitalize()
         self.logger.info("Filling in field \"{}\" with string: {}".format(locator[1], name))
-        self.fill_specified_field(self.find_web_element(locator), name)
+        self.fill_specified_field(locator, name)
 
     def enter_email(self, email=None):
         if email is None:

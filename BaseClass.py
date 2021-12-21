@@ -71,7 +71,7 @@ class BaseClass:
     PASSWORD_CONFIRM_FIELD = (By.CSS_SELECTOR, "#input-confirm")
     PRIVACY_POLICY_CHECKBOX = (By.NAME, "agree")
     SUBMIT_CONTINUE_BUTTON = (By.CSS_SELECTOR, ".pull-right .btn.btn-primary")
-    BLANK_FIELDS_TEXT = (By.CSS_SELECTOR, ".text-danger")
+    INPUT_FIELD_ERROR = (By.CSS_SELECTOR, ".text-danger")
     SUCCESS_NOTIFICATION = (By.CSS_SELECTOR, "#content h1")
 
     # Admin's login page
@@ -177,14 +177,27 @@ class BaseClass:
             raise AssertionError(time_is_up, "Время ожидания элемента \'{} = {}\' истекло".format(*locator))
         return el
 
+    def wait_for_alert(self, timeout=2):
+        self.logger.info('Waiting for the alert within {} seconds'.format(timeout))
+        try:
+            WebDriverWait(self.browser, 2).until(EC.alert_is_present())
+            self.browser.switch_to.alert.accept()
+        except TimeoutException as time_is_up:
+            self.logger.error("Alert did not appear")
+            self.browser.save_screenshot(self.screenshot_name)
+            raise AssertionError(time_is_up, "Время ожидания alert истекло")
+
     def check_element_appears_after_click(self, clickable_elem, expected_elem):
         self.find_web_element(clickable_elem).click()
         self.wait_web_element(expected_elem)
 
-    def fill_specified_field(self, web_element_field, text):
-        web_element_field.clear()
+    def fill_specified_field(self, web_element, text):
+        field = web_element
+        if type(web_element) == tuple:
+            field = self.find_web_element(web_element)
+        field.clear()
         self.logger.info("Filling the field with text: {}".format(text))
-        web_element_field.send_keys(text)
+        field.send_keys(text)
 
 
 class LoginOnAdminPage(BaseClass):

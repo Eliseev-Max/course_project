@@ -37,20 +37,20 @@ def test_send_empty_form_with_checkbox_on(browser, base_url):
     form_filling.open_reg_account_page(base_url)
     form_filling.find_web_element(form_filling.PRIVACY_POLICY_CHECKBOX).click()
     form_filling.wait_and_click(form_filling.SUBMIT_CONTINUE_BUTTON)
-    assert len(form_filling.find_all_specified_elements(form_filling.BLANK_FIELDS_TEXT)) == 5, "Not all warnings \
+    assert len(form_filling.find_all_specified_elements(form_filling.INPUT_FIELD_ERROR)) == 5, "Not all warnings \
     about incorrect filling of fields appeared "
 
 @allure.title("Проверка допустимого количества символов в полях ввода")
 @allure.description("Проверка граничных условий полей для ввода имени и фамилии")
 @pytest.mark.parametrize("first_name",[UserLoginPage.generate_string(num_of_chars=1),
                                        UserLoginPage.generate_string(num_of_chars=32, num=True, uppercase=True)])
-@pytest.mark.parametrize("second_name",[UserLoginPage.generate_string(num_of_chars=1),
+@pytest.mark.parametrize("last_name",[UserLoginPage.generate_string(num_of_chars=1),
                                        UserLoginPage.generate_string(num_of_chars=32, num=True, uppercase=True)])
-def test_border_conditions(browser, base_url, first_name, second_name):
+def test_border_conditions(browser, base_url, first_name, last_name):
     new_user = UserLoginPage(browser)
     new_user.open_reg_account_page(base_url)
     new_user.fill_in_with_letters(new_user.FIRST_NAME_FIELD, name=first_name)
-    new_user.fill_in_with_letters(new_user.LAST_NAME_FIELD, name=second_name)
+    new_user.fill_in_with_letters(new_user.LAST_NAME_FIELD, name=last_name)
     new_user.enter_email()
     new_user.enter_telephone()
     new_user.enter_and_confirm_password()
@@ -62,10 +62,54 @@ def test_border_conditions(browser, base_url, first_name, second_name):
         raise AssertionError("No message")
 
 
-def test_exceeding_character_value(browser, base_url):
-    """Ввести поочерёдно в поля First Name и Last Name 33 символа"""
-    pass
+@allure.title("Проверка недопустимого количества символов в полях ввода")
+@allure.description("Ввод символов в поля для имени и фамилии в количестве, превышающем верхний порог")
+@pytest.mark.parametrize("name_field", [1, 2])
+def test_exceeding_character_value(browser, base_url, name_field):
+    new_user = UserLoginPage(browser)
+    new_user.open_reg_account_page(base_url)
+    first_name = None
+    last_name = None
+    if name_field == 1:
+        first_name = new_user.generate_string(num_of_chars=33, uppercase=True)
+    if name_field == 2:
+        last_name = new_user.generate_string(num_of_chars=33, uppercase=True)
+    new_user.fill_in_with_letters(new_user.FIRST_NAME_FIELD, name=first_name)
+    new_user.fill_in_with_letters(new_user.LAST_NAME_FIELD, name=last_name)
+    new_user.enter_email()
+    new_user.enter_telephone()
+    new_user.enter_and_confirm_password()
+    new_user.find_web_element(new_user.PRIVACY_POLICY_CHECKBOX).click()
+    new_user.wait_and_click(new_user.SUBMIT_CONTINUE_BUTTON)
+    new_user.wait_web_element(new_user.INPUT_FIELD_ERROR)
 
 
-def test_invalid_email(browser, base_url):
-    pass
+@pytest.mark.parametrize("confirmation", ["", "123456"])
+def test_no_confirm_password(browser, base_url, confirmation):
+    PASSWORD = "qwerty"
+    WARNING_TEXT = "Password confirmation does not match password!"
+    new_user = UserLoginPage(browser)
+    new_user.open_reg_account_page(base_url)
+    new_user.fill_in_with_letters(new_user.FIRST_NAME_FIELD)
+    new_user.fill_in_with_letters(new_user.LAST_NAME_FIELD)
+    new_user.enter_email()
+    new_user.enter_telephone()
+    new_user.enter_password(pwd=PASSWORD)
+    new_user.fill_in_with_letters(new_user.PASSWORD_CONFIRM_FIELD, name=confirmation)
+    new_user.find_web_element(new_user.PRIVACY_POLICY_CHECKBOX).click()
+    new_user.wait_and_click(new_user.SUBMIT_CONTINUE_BUTTON)
+    assert new_user.wait_web_element(new_user.INPUT_FIELD_ERROR).text == WARNING_TEXT, "Invalid warning message"
+
+
+def test_email_without_domain(browser, base_url):
+    WARNING_TEXT = "E-Mail Address does not appear to be valid!"
+    new_user = UserLoginPage(browser)
+    new_user.open_reg_account_page(base_url)
+    new_user.fill_in_with_letters(new_user.FIRST_NAME_FIELD)
+    new_user.fill_in_with_letters(new_user.LAST_NAME_FIELD)
+    new_user.enter_email(email="test@mail")
+    new_user.enter_telephone()
+    new_user.enter_and_confirm_password()
+    new_user.find_web_element(new_user.PRIVACY_POLICY_CHECKBOX).click()
+    new_user.wait_and_click(new_user.SUBMIT_CONTINUE_BUTTON)
+    assert new_user.wait_web_element(new_user.INPUT_FIELD_ERROR).text == WARNING_TEXT, "Invalid warning message"

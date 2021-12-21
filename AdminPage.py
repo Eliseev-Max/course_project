@@ -52,26 +52,18 @@ class AdminPage(BaseClass):
         self.logger.info("Saving new product")
         self.browser.find_element(*self.SAVE_BUTTON).click()
 
-    # @staticmethod
-    # def random_string_generator():
-    #     lower_case = "abcdefghijklmnopqrstuvwxyz"
-    #     upper_case = lower_case.upper()
-    #     numbers = "0123456789"
-    #     symbols = lower_case + upper_case + numbers
-    #     return "".join(random.sample(symbols, random.randint(5, 9)))
-
     def add_new_product(self):
         self.logger.info("Adding new product")
         self.browser.implicitly_wait(2)
         prod_name = self.browser.find_element(*self.PRODUCT_NAME_FIELD)
         meta_tag_title = self.browser.find_element(*self.META_TAG_TITLE)
-        self.fill_the_field(prod_name, self.random_string_generator())
-        self.fill_the_field(meta_tag_title, self.random_string_generator())
+        self.fill_the_field(prod_name, self.generate_string())
+        self.fill_the_field(meta_tag_title, self.generate_string())
         self.go_to_tab_Data()
         model = self.browser.find_element(*self.MODEL_FIELD)
         price = self.browser.find_element(*self.PRICE_FIELD)
-        self.fill_the_field(model, self.random_string_generator())
-        self.fill_the_field(price, random.randint(150,400))
+        self.fill_the_field(model, self.generate_string())
+        self.fill_the_field(price, random.randint(150, 400))
         self.browser.find_element(*self.SAVE_BUTTON).click()
 
     def choose_products(self, *serial_number):
