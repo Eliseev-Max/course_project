@@ -22,6 +22,14 @@ class BaseClass:
     SUCCESS_ALERT = (By.CSS_SELECTOR, ".alert.alert-success.alert-dismissible")
     WARNING_ALERT = (By.CSS_SELECTOR, ".alert.alert-danger.alert-dismissible")
     # Main page locators:
+    # + Add header locators
+    # Иконка-ссылка на страницу "Contact Us"
+    PHONE_ICON = (By.CSS_SELECTOR, ".fa.fa-phone")
+    # Кнопка My Account
+    MY_ACCOUNT_TOGGLE = (By.CSS_SELECTOR, "a[title='My Account']")
+    # Кнопка Wish List (0)
+    WISH_LIST_REFERENCE = (By.CSS_SELECTOR, "#wishlist-total")
+    SHOPPING_CART_REFERENCE = (By.CSS_SELECTOR, "a[title='Shopping Cart']")
     SEARCH_LINE = (By.CSS_SELECTOR, "[name=search]")
     SEARCH_BUTTON = (By.CSS_SELECTOR, ".input-group-btn button")
     LOGO_TEXT = (By.CSS_SELECTOR, "#logo a")
@@ -35,18 +43,25 @@ class BaseClass:
     PRODUCT_THUMBS = (By.CSS_SELECTOR, ".product-thumb")
     CART_BUTTON = (By.CSS_SELECTOR, "#cart button")
     SHOPPING_CART_ALERT = (By.CSS_SELECTOR, "p.text-center")
-    ADD_TO_WISH_LIST = (By.CSS_SELECTOR, ".button-group i.fa")
-    SUCCESS_OR_DISMISS_ALERT = (By.CSS_SELECTOR, ".alert")
-    MY_ACCOUNT_CARET = (By.CSS_SELECTOR, ".caret")
+    # Селектор для всех кнопок ADD TO CART
+    ADD_TO_CART = (By.CSS_SELECTOR, ".button-group button .hidden-xs.hidden-sm.hidden-md")
+    # Селектор для всех кнопок "Add to Wish List"
+    ADD_TO_WISH_LIST = (By.CSS_SELECTOR, "button[data-original-title='Add to Wish List']")
+    # Селектор для всех кнопок "Compare this Product"
+    COMPARE_THIS_PRODUCT = (By.CSS_SELECTOR, "button[data-original-title='Compare this Product']")
+    # SUCCESS_OR_DISMISS_ALERT = (By.CSS_SELECTOR, ".alert")
+    # MY_ACCOUNT_CARET = (By.CSS_SELECTOR, ".caret")
     REGISTER = (By.LINK_TEXT, "Register")
     LOGIN = (By.LINK_TEXT, "Login")
     # Catalog page locators:
     LOCATION_OF_CATALOG = "laptop-notebook/"
     LAPTOPS_NOTEBOOKS = (By.CSS_SELECTOR, "#content h2")
     LINK_WINDOWS = (By.PARTIAL_LINK_TEXT, "Windows")
-    ADD_TO_CART = (By.CSS_SELECTOR, ".button-group .fa.fa-shopping-cart")
+
+
+
     CART_TOTAL = (By.CSS_SELECTOR, "#cart-total")
-    COMPARE_PRODUCT = (By.XPATH, "//*[@class='button-group']/button[@data-original-title='Compare this Product']")
+    # COMPARE_PRODUCT = (By.XPATH, "//*[@class='button-group']/button[@data-original-title='Compare this Product']")
     PRODUCT_COMPARE_LINK = (By.CSS_SELECTOR, "#compare-total")
     # Product page locators:
     LOCATION_OF_PRODUCT = "mp3-players/ipod-classic"
