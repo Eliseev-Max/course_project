@@ -113,3 +113,11 @@ def test_email_without_domain(browser, base_url):
     new_user.find_web_element(new_user.PRIVACY_POLICY_CHECKBOX).click()
     new_user.wait_and_click(new_user.SUBMIT_CONTINUE_BUTTON)
     assert new_user.wait_web_element(new_user.INPUT_FIELD_ERROR).text == WARNING_TEXT, "Invalid warning message"
+
+
+def test_authenticate_user(browser, base_url):
+    email = "example@opencart.com"
+    pwd = "qwerty"
+    auth = UserLoginPage(browser)
+    auth.user_authentication(base_url, email, pwd)
+

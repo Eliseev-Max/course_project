@@ -22,7 +22,6 @@ class BaseClass:
     SUCCESS_ALERT = (By.CSS_SELECTOR, ".alert.alert-success.alert-dismissible")
     WARNING_ALERT = (By.CSS_SELECTOR, ".alert.alert-danger.alert-dismissible")
     # Main page locators:
-    # + Add header locators
     # Иконка-ссылка на страницу "Contact Us"
     PHONE_ICON = (By.CSS_SELECTOR, ".fa.fa-phone")
     # Кнопка My Account
@@ -38,13 +37,15 @@ class BaseClass:
     POUND_STERLING = (By.NAME, "GBP")
     US_DOLLAR = (By.NAME, "USD")
     CURRENCY_SIGN = (By.CSS_SELECTOR, ".btn.btn-link.dropdown-toggle strong")
+    REMOVE_FROM_CART_BUTTON = (By.CSS_SELECTOR, "button[title='Remove']")
     FEATURED = (By.CSS_SELECTOR, "#content h3")
     PRODUCT_PRICE = (By.CSS_SELECTOR, "p.price")
     PRODUCT_THUMBS = (By.CSS_SELECTOR, ".product-thumb")
-    CART_BUTTON = (By.CSS_SELECTOR, "#cart button")
+    CART_BUTTON = (By.CSS_SELECTOR, "#cart button[type='button']")
     SHOPPING_CART_ALERT = (By.CSS_SELECTOR, "p.text-center")
+    VIEW_CART = (By.CSS_SELECTOR, "strong .fa.fa-shopping-cart")
     # Селектор для всех кнопок ADD TO CART
-    ADD_TO_CART = (By.CSS_SELECTOR, ".button-group button .hidden-xs.hidden-sm.hidden-md")
+    ADD_TO_CART = (By.XPATH, "//button[span='Add to Cart']")
     # Селектор для всех кнопок "Add to Wish List"
     ADD_TO_WISH_LIST = (By.CSS_SELECTOR, "button[data-original-title='Add to Wish List']")
     # Селектор для всех кнопок "Compare this Product"
@@ -57,9 +58,6 @@ class BaseClass:
     LOCATION_OF_CATALOG = "laptop-notebook/"
     LAPTOPS_NOTEBOOKS = (By.CSS_SELECTOR, "#content h2")
     LINK_WINDOWS = (By.PARTIAL_LINK_TEXT, "Windows")
-
-
-
     CART_TOTAL = (By.CSS_SELECTOR, "#cart-total")
     # COMPARE_PRODUCT = (By.XPATH, "//*[@class='button-group']/button[@data-original-title='Compare this Product']")
     PRODUCT_COMPARE_LINK = (By.CSS_SELECTOR, "#compare-total")

@@ -76,3 +76,9 @@ class UserLoginPage(BaseClass):
     def view_success_notification(self):
         notification = WebDriverWait(self.browser, 2).until(EC.visibility_of_element_located(self.SUCCESS_NOTIFICATION))
         return notification.text
+
+    def user_authentication(self, url, email, password):
+        self.go_to_login_page(url)
+        self.fill_specified_field(self.EMAIL_ADDRESS, email)
+        self.fill_specified_field(self.INPUT_PASSWORD, password)
+        self.find_web_element(self.LOGIN_BUTTON).click()

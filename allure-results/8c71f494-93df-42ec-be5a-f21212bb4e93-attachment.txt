@@ -1,0 +1,25 @@
+[32mINFO    [0m BrowserLogger:conftest.py:55 	Test "test_check_sign_with_changing_currency" is running
+[32mINFO    [0m BrowserLogger:conftest.py:116 Browser chrome started with such capabilities: {'acceptInsecureCerts': False, 'browserName': 'chrome', 'browserVersion': '96.0.4664.110', 'chrome': {'chromedriverVersion': '96.0.4664.45 (76e4c1bb2ab4671b8beba3444e61c0f17584b2fc-refs/branch-heads/4664@{#947})', 'userDataDir': 'C:\\Users\\MAF23~1.ELI\\AppData\\Local\\Temp\\scoped_dir19808_1301351866'}, 'goog:chromeOptions': {'debuggerAddress': 'localhost:64948'}, 'networkConnectionEnabled': False, 'pageLoadStrategy': 'normal', 'platformName': 'windows', 'proxy': {}, 'setWindowRect': True, 'strictFileInteractability': False, 'timeouts': {'implicit': 0, 'pageLoad': 300000, 'script': 30000}, 'unhandledPromptBehavior': 'dismiss and notify', 'webauthn:extension:credBlob': True, 'webauthn:extension:largeBlob': True, 'webauthn:virtualAuthenticators': True}
+[32mINFO    [0m MainPage:MainPage.py:7 Opening source: http://172.19.16.142/
+[32mINFO    [0m MainPage:MainPage.py:13 Choosing currency: USD
+[32mINFO    [0m MainPage:BaseClass.py:148 Searching element: 'css selector = button .fa.fa-caret-down'
+[32mINFO    [0m MainPage:BaseClass.py:156 Element 'css selector = button .fa.fa-caret-down' was found
+[32mINFO    [0m MainPage:BaseClass.py:148 Searching element: 'name = USD'
+[32mINFO    [0m MainPage:BaseClass.py:156 Element 'name = USD' was found
+[32mINFO    [0m MainPage:BaseClass.py:148 Searching element: 'css selector = .btn.btn-link.dropdown-toggle strong'
+[32mINFO    [0m MainPage:BaseClass.py:156 Element 'css selector = .btn.btn-link.dropdown-toggle strong' was found
+[32mINFO    [0m MainPage:MainPage.py:13 Choosing currency: EUR
+[32mINFO    [0m MainPage:BaseClass.py:148 Searching element: 'css selector = button .fa.fa-caret-down'
+[32mINFO    [0m MainPage:BaseClass.py:156 Element 'css selector = button .fa.fa-caret-down' was found
+[32mINFO    [0m MainPage:BaseClass.py:148 Searching element: 'name = EUR'
+[32mINFO    [0m MainPage:BaseClass.py:156 Element 'name = EUR' was found
+[32mINFO    [0m MainPage:BaseClass.py:148 Searching element: 'css selector = .btn.btn-link.dropdown-toggle strong'
+[32mINFO    [0m MainPage:BaseClass.py:156 Element 'css selector = .btn.btn-link.dropdown-toggle strong' was found
+[32mINFO    [0m MainPage:MainPage.py:13 Choosing currency: GBP
+[32mINFO    [0m MainPage:BaseClass.py:148 Searching element: 'css selector = button .fa.fa-caret-down'
+[32mINFO    [0m MainPage:BaseClass.py:156 Element 'css selector = button .fa.fa-caret-down' was found
+[32mINFO    [0m MainPage:BaseClass.py:148 Searching element: 'name = GBP'
+[32mINFO    [0m MainPage:BaseClass.py:156 Element 'name = GBP' was found
+[32mINFO    [0m MainPage:BaseClass.py:148 Searching element: 'css selector = .btn.btn-link.dropdown-toggle strong'
+[32mINFO    [0m MainPage:BaseClass.py:156 Element 'css selector = .btn.btn-link.dropdown-toggle strong' was found
+[32mINFO    [0m BrowserLogger:conftest.py:120 	Test "test_check_sign_with_changing_currency" completed
