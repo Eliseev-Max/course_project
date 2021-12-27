@@ -23,3 +23,12 @@ class MainPage(BaseClass):
             self.find_web_element(self.POUND_STERLING).click()
         else:
             self.find_web_element(self.US_DOLLAR).click()
+
+
+    def get_total_amount_and_price(self):
+        button_label = self.find_web_element(self.CART_TOTAL)
+        button_label_list = button_label.text.split(" - ")
+        total_amount = int(button_label_list[0].rstrip(" item(s)"))
+        total_price = float(button_label_list[1][1::].replace(",", ""))
+        total = (total_amount, total_price)
+        return total

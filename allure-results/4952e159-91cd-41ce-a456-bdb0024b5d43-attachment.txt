@@ -1,8 +1,0 @@
-[32mINFO    [0m BrowserLogger:conftest.py:55 	Test "test_delete_from_cart" is running
-[32mINFO    [0m BrowserLogger:conftest.py:116 Browser chrome started with such capabilities: {'acceptInsecureCerts': False, 'browserName': 'chrome', 'browserVersion': '96.0.4664.110', 'chrome': {'chromedriverVersion': '96.0.4664.45 (76e4c1bb2ab4671b8beba3444e61c0f17584b2fc-refs/branch-heads/4664@{#947})', 'userDataDir': 'C:\\Users\\MAF23~1.ELI\\AppData\\Local\\Temp\\scoped_dir15304_2017708251'}, 'goog:chromeOptions': {'debuggerAddress': 'localhost:57956'}, 'networkConnectionEnabled': False, 'pageLoadStrategy': 'normal', 'platformName': 'windows', 'proxy': {}, 'setWindowRect': True, 'strictFileInteractability': False, 'timeouts': {'implicit': 0, 'pageLoad': 300000, 'script': 30000}, 'unhandledPromptBehavior': 'dismiss and notify', 'webauthn:extension:credBlob': True, 'webauthn:extension:largeBlob': True, 'webauthn:virtualAuthenticators': True}
-[32mINFO    [0m MainPage:MainPage.py:7 Opening source: http://172.19.16.142/
-[32mINFO    [0m MainPage:BaseClass.py:169 Searching for several elements with locator: 'xpath = //button[span='Add to Cart']'
-[32mINFO    [0m MainPage:BaseClass.py:184 Waiting for the element ('css selector', '#cart button') within 2 seconds
-[32mINFO    [0m MainPage:BaseClass.py:184 Waiting for the element ('css selector', 'strong .fa.fa-shopping-cart') within 2 seconds
-[31m[1mERROR   [0m MainPage:BaseClass.py:188 Element 'css selector = strong .fa.fa-shopping-cart' was not found on the page
-[32mINFO    [0m BrowserLogger:conftest.py:120 	Test "test_delete_from_cart" completed

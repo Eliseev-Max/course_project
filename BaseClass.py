@@ -57,22 +57,35 @@ class BaseClass:
     # Catalog page locators:
     LOCATION_OF_CATALOG = "laptop-notebook/"
     LAPTOPS_NOTEBOOKS = (By.CSS_SELECTOR, "#content h2")
+    PHONES_AND_PDAS = (By.XPATH, "//li[a='Phones & PDAs']")
     LINK_WINDOWS = (By.PARTIAL_LINK_TEXT, "Windows")
     CART_TOTAL = (By.CSS_SELECTOR, "#cart-total")
     # COMPARE_PRODUCT = (By.XPATH, "//*[@class='button-group']/button[@data-original-title='Compare this Product']")
     PRODUCT_COMPARE_LINK = (By.CSS_SELECTOR, "#compare-total")
     # Product page locators:
-    LOCATION_OF_PRODUCT = "mp3-players/ipod-classic"
+    LOCATION_OF_MP3_PLAYERS = "mp3-players/ipod-classic"
     THUMBNAILS = (By.CSS_SELECTOR, ".image-additional .thumbnail")
     TAB_CONTENT = (By.CSS_SELECTOR, ".tab-content")
     PRICE = (By.XPATH, "//*[@class='list-unstyled']/li/h2")
-
+    # Phones & PDAs
+    NAME_OF_PRODUCT = (By.CSS_SELECTOR, ".caption h4 a")
+    QTY_FIELD = (By.CSS_SELECTOR, "#input-quantity")
+    ADD_TO_CART_PRODUCT = (By.CSS_SELECTOR, "#button-cart")
     # Account Login page locators (/index.php?route=account/login):
     LOGIN_PAGE = "index.php?route=account/login"
     CONTINUE_BUTTON = (By.CSS_SELECTOR, ".well .btn.btn-primary")
     EMAIL_ADDRESS = (By.CSS_SELECTOR, "#input-email")
     INPUT_PASSWORD = (By.CSS_SELECTOR, "#input-password")
     LOGIN_BUTTON = (By.CSS_SELECTOR, "[value=Login]")
+
+    # Shopping Cart
+    SHOPPING_CART_TITLE = (By.CSS_SELECTOR, "#content h1")
+    EMPTY_SHOPPING_CART = (By.CSS_SELECTOR, "#content p")
+    PRODUCT_NAME_IN_CART = (By.CSS_SELECTOR, "tbody .text-left a")
+    QUANTITY_IN_CART = (By.CSS_SELECTOR, "")
+    TOTAL_PRICE_IN_CART = (By.CSS_SELECTOR, "")
+    REFRESH_QUANTITY_BUTTON = (By.CSS_SELECTOR, "button[data-original-title='Update']")
+    SHOPPING_CART_REMOVE_BUTTON = (By.CSS_SELECTOR, "button[data-original-title='Remove']")
 
     # Register Account page locators (/index.php?route=account/register):
     REGISTER_ACCOUNT_PAGE = "index.php?route=account/register"
@@ -119,16 +132,12 @@ class BaseClass:
 
         if disable_lowercase:
             characters = ""
-
         if uppercase:
             characters = characters + capital_letters
-
         if num:
             characters = characters + BaseClass.NUMBERS
-
         if sym:
             characters = characters + BaseClass.SYMBOLS
-
         if num_of_chars is None:
             num_of_chars = random.randint(4, 10)
         else:
