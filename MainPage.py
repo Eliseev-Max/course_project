@@ -3,11 +3,6 @@ from BaseClass import BaseClass
 
 class MainPage(BaseClass):
 
-    def go_to_mainpage(self, url):
-        self.logger.info("Opening source: {}".format(url))
-        self.browser.get(url)
-        return self
-
     def choose_currency(self, currency):
         currency_designations = ["USD", "EUR", "GBP"]
         self.logger.info('Choosing currency: {}'.format(currency))

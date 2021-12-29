@@ -50,7 +50,6 @@ class BaseClass:
     ADD_TO_WISH_LIST = (By.CSS_SELECTOR, "button[data-original-title='Add to Wish List']")
     # Селектор для всех кнопок "Compare this Product"
     COMPARE_THIS_PRODUCT = (By.CSS_SELECTOR, "button[data-original-title='Compare this Product']")
-    # SUCCESS_OR_DISMISS_ALERT = (By.CSS_SELECTOR, ".alert")
     # MY_ACCOUNT_CARET = (By.CSS_SELECTOR, ".caret")
     REGISTER = (By.LINK_TEXT, "Register")
     LOGIN = (By.LINK_TEXT, "Login")
@@ -69,6 +68,7 @@ class BaseClass:
     PRICE = (By.XPATH, "//*[@class='list-unstyled']/li/h2")
     # Phones & PDAs
     NAME_OF_PRODUCT = (By.CSS_SELECTOR, ".caption h4 a")
+    INPUT_QUANTITY = (By.CSS_SELECTOR, ".input-group.btn-block input[type='text']")
     QTY_FIELD = (By.CSS_SELECTOR, "#input-quantity")
     ADD_TO_CART_PRODUCT = (By.CSS_SELECTOR, "#button-cart")
     # Account Login page locators (/index.php?route=account/login):
@@ -79,13 +79,17 @@ class BaseClass:
     LOGIN_BUTTON = (By.CSS_SELECTOR, "[value=Login]")
 
     # Shopping Cart
+    SHOPPING_CART_URL = "index.php?route=checkout/cart"
     SHOPPING_CART_TITLE = (By.CSS_SELECTOR, "#content h1")
-    EMPTY_SHOPPING_CART = (By.CSS_SELECTOR, "#content p")
-    PRODUCT_NAME_IN_CART = (By.CSS_SELECTOR, "tbody .text-left a")
+    SHOPPING_CART_PROMPT = (By.CSS_SELECTOR, "#content p")
+    EMPTY_CART_TEXT = "Your shopping cart is empty!"
+    TABLE_OF_PRODUCTS = (By.CSS_SELECTOR, ".table-responsive .table.table-bordered")
+    PRODUCT_NAME_IN_CART = (By.CSS_SELECTOR, ".table-responsive table.table-bordered tbody .text-left a")
     QUANTITY_IN_CART = (By.CSS_SELECTOR, "")
     TOTAL_PRICE_IN_CART = (By.CSS_SELECTOR, "")
-    REFRESH_QUANTITY_BUTTON = (By.CSS_SELECTOR, "button[data-original-title='Update']")
+    UPDATE_QUANTITY_BUTTON = (By.CSS_SELECTOR, "button[data-original-title='Update']")
     SHOPPING_CART_REMOVE_BUTTON = (By.CSS_SELECTOR, "button[data-original-title='Remove']")
+    CONTINUE_SHOPPING = (By.XPATH, "//div[a='Continue Shopping']")
 
     # Register Account page locators (/index.php?route=account/register):
     REGISTER_ACCOUNT_PAGE = "index.php?route=account/register"
@@ -144,6 +148,11 @@ class BaseClass:
             num_of_chars = int(num_of_chars)
 
         return "".join(random.sample(characters, num_of_chars))
+
+    def go_to_mainpage(self, url):
+        self.logger.info("Opening source: {}".format(url))
+        self.browser.get(url)
+        return self
 
     def find_web_element(self, locator):
         """
